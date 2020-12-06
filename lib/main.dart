@@ -3,5 +3,5 @@ import 'package:flutter/material.dart';
 import 'x&0\'s.dart' as app;
 
 void main() {
-  runApp(app.MyApp());
+  runApp(const app.MyApp());
 }
