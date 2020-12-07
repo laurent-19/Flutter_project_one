@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.blue,
           title: const Center(
-            child: Text('Basic Phrases'),
+            child: Text('Basic__Phrases'),
           ),
         ),
         body: MyHomePage(),
