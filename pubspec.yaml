@@ -16,6 +16,8 @@ dependencies:
   http: ^0.12.2
   pedantic: ^1.9.2
   audioplayers: ^0.17.0
+  url_launcher: ^5.7.10
+
 
 dev_dependencies:
   flutter_test:
