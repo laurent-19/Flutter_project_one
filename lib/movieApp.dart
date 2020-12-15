@@ -26,8 +26,7 @@ class MyApp extends StatelessWidget {
 }
 
 class Movie {
-  Movie(this.title, this.image, this.url, this.backgroundMovie, this.rating,
-      this.genres);
+  Movie(this.title, this.image, this.url, this.backgroundMovie, this.rating, this.genres);
 
   String title, image, url, backgroundMovie;
   double rating;
@@ -45,24 +44,19 @@ class _MovieStateFullState extends State<MovieStateFull> {
   final List<String> allOfGenders = <String>[];
 
   Future<void> getMovies() async {
-    final Response response =
-        await get('https://yts.mx/api/v2/list_movies.json?limit=50');
-    final Map<String, dynamic> json =
-        jsonDecode(response.body) as Map<String, dynamic>;
+    final Response response = await get('https://yts.mx/api/v2/list_movies.json?limit=50');
+    final Map<String, dynamic> json = jsonDecode(response.body) as Map<String, dynamic>;
 
     allOfMovies = <Movie>[];
 
     for (int i = 0; i < 50; i++) {
       final String movieTitle = json['data']['movies'][i]['title'] as String;
-      final String movieImage =
-          json['data']['movies'][i]['large_cover_image'] as String;
-      final String background =
-          json['data']['movies'][i]['background_image'] as String;
+      final String movieImage = json['data']['movies'][i]['large_cover_image'] as String;
+      final String background = json['data']['movies'][i]['background_image'] as String;
       double rating;
       rating = json['data']['movies'][i]['rating'].toDouble() as double;
 
-      final List<dynamic> dynamicListOfGenders =
-          json['data']['movies'][i]['genres'] as List<dynamic>;
+      final List<dynamic> dynamicListOfGenders = json['data']['movies'][i]['genres'] as List<dynamic>;
       final List<String> genres = dynamicListOfGenders.cast<String>().toList();
       for (int j = 0; j < genres.length; j++) {
         if (!allOfGenders.contains(genres[j])) {
@@ -70,8 +64,7 @@ class _MovieStateFullState extends State<MovieStateFull> {
         }
       }
       final String urlMovie = json['data']['movies'][i]['urlMovie'].toString();
-      allOfMovies.add(
-          Movie(movieTitle, movieImage, urlMovie, background, rating, genres));
+      allOfMovies.add(Movie(movieTitle, movieImage, urlMovie, background, rating, genres));
     }
   }
 
@@ -117,9 +110,7 @@ class _MovieStateFullState extends State<MovieStateFull> {
           movies.sort((Movie a, Movie b) => b.rating.compareTo(a.rating));
         }
       } else if (filterChoice != 'None') {
-        movies = allOfMovies
-            .where((Movie element) => element.genres.contains(filterChoice))
-            .toList();
+        movies = allOfMovies.where((Movie element) => element.genres.contains(filterChoice)).toList();
       } else {
         movies = allOfMovies;
       }
